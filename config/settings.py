@@ -99,23 +99,19 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+"""
+PGPASSWORD=0CM9fhuz0760ZNpCbS7N psql -h containers-us-west-161.railway.app -U postgres -p 5901 -d railway
+postgresql://postgres:0CM9fhuz0760ZNpCbS7N@containers-us-west-161.railway.app:5901/railway
+"""
 
-if DEBUG:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-        }
-    }
-else:
-    DATABASES = {
+DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            "HOST": os.environ.get("RDS_HOST"),
-            "NAME": os.environ.get("RDS_NAME"),
-            "PASSWORD": os.environ.get("RDS_PASSWORD"),
-            "USER": os.environ.get("RDS_USER"),
-            "PORT": "5432",
+            "HOST": "containers-us-west-161.railway.app",
+            "NAME": "railway",
+            "PASSWORD": "0CM9fhuz0760ZNpCbS7N",
+            "USER": "postgres",
+            "PORT": "5901",
         }
     }
 
